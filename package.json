@@ -2,11 +2,10 @@
   "name": "01-node-basics",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
-    "type": "module",
+  "main": "index.js",
   "scripts": {
-        "start":"node main.js",
-    "dev":"nodemon main.js",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/alexandr90h/01-node-basics/issues"
   },
-  "homepage": "https://github.com/alexandr90h/01-node-basics#readme"
+  "homepage": "https://github.com/alexandr90h/01-node-basics#readme",
+  "dependencies": {
+    "yargs": "^16.2.0"
+  }
 }
