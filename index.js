@@ -31,24 +31,22 @@ console.log(argv);
 //   },
 // });
 // TODO: рефакторить
-[action] = argv._;
-console.log(action);
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case 'list':
-      console.log('-----------------------');
+      listContacts();
       break;
 
     case 'get':
-      // ... id
+      getContactById(id);
       break;
 
     case 'add':
-      // ... name email phone
+      addContact(name, email, phone);
       break;
 
     case 'remove':
-      // ... id
+      removeContact(id);
       break;
 
     default:
@@ -57,17 +55,3 @@ function invokeAction({ action, id, name, email, phone }) {
 }
 
 invokeAction(argv);
-
-// listContacts();
-// getContactById(2);
-// removeContact(2);
-// addContact(
-//   'Bezvuglyak Alexandr',
-//   'alexandr90h@getMaxListeners.com',
-//   '(097) 152-0944',
-// );
-
-// fs.readFile('readme.txt')
-//   .then(data => console.log(data.toString()))
-//   .catch(err => console.log(err.message));
-// yargs.parse();
