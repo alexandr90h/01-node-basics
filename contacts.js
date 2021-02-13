@@ -1,10 +1,6 @@
 const fs = require('fs/promises');
 const path = require('path');
-// import path from 'path';
 const url = require('url');
-
-// const __filename = url.fileURLToPath(import.meta.url);
-// const __dirname = path.dirname(__filename);
 
 const contactsPath = path.resolve(__dirname, 'db/contacts.json');
 
@@ -40,11 +36,17 @@ async function removeContact(contactId) {
   });
   const contacts = JSON.parse(result);
   const contactById = contacts.filter(({ id }) => id !== contactId);
+  await fs.writeFile(
+    contactsPath,
+    JSON.stringify(contactById),
+    function (error) {
+      if (error) throw error;
+    },
+  );
   console.table(contactById);
 }
 
 async function addContact(name, email, phone) {
-  const addContact = { name, email, phone };
   const result = await fs.readFile(contactsPath, 'utf8', (err, data) => {
     if (err) {
       console.error(err.message);
@@ -52,6 +54,16 @@ async function addContact(name, email, phone) {
     }
   });
   const contacts = JSON.parse(result);
-  console.table([...contacts, addContact]);
+  let id = 11;
+  const addContact = { id, name, email, phone };
+  const newContacts = [...contacts, addContact];
+  await fs.writeFile(
+    contactsPath,
+    JSON.stringify(newContacts),
+    function (error) {
+      if (error) throw error;
+    },
+  );
+  console.table(newContacts);
 }
 module.exports = { listContacts, getContactById, removeContact, addContact };
